@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Docs on Rotate Instance Identity Certificates Docs</title>
+    <link>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/</link>
+    <description>Recent content in Docs on Rotate Instance Identity Certificates Docs</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 02 Nov 2020 13:42:03 -0700</lastBuildDate><atom:link href="https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Overview</title>
+      <link>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/overview/</link>
+      <pubDate>Mon, 02 Nov 2020 13:30:27 -0700</pubDate>
+      
+      <guid>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/overview/</guid>
+      <description>Intro Tanzu Application Service (TAS) includes an internal certificate authority that is used to sign instance identity certificates. These certificates are issued to each application instance and are used to verify application identity for routing and other features.
+If these certificates expire, the platform will be unable to verify application identity and route requests to the correct applications, resulting in downtime for applications that are accessed through the platform routers.</description>
+    </item>
+    
+    <item>
+      <title>Running the Tool</title>
+      <link>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/running/</link>
+      <pubDate>Thu, 29 Oct 2020 08:14:54 -0600</pubDate>
+      
+      <guid>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/running/</guid>
+      <description>This tool will automatically rotate/update the older Diego root certificate authority and Intermediate Identity Cert used by Diego for application instance identity. This tool is not needed if you have already upgraded to Tanzu Application Service 2.7 or later, as that version automatically rotates those certs on upgrade.
+The tool operates on all BOSH deployments that have Diego cells, including TAS, TASW, and Isolation Segments for TAS.
+NOTE - we only support the full TAS deployment - small footprint runtime is not currently supported.</description>
+    </item>
+    
+    <item>
+      <title>Frequenty Asked Questions</title>
+      <link>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/faq/</link>
+      <pubDate>Mon, 02 Nov 2020 13:42:03 -0700</pubDate>
+      
+      <guid>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/faq/</guid>
+      <description>Why must the tool run on the Operations Manager VM? Under the hood, we rely on the bosh and credhub CLIs. These programs are already guaranteed to be present on the Operations Manager VM and are known to be compatible with the currently deployed version of the platform, so we require the tooling to run in this environment to prevent errors due to incompatible versions or missing tools.
+How long does the rotation take?</description>
+    </item>
+    
+  </channel>
+</rss>
