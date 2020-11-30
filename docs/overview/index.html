@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>Overview - Rotate Instance Identity Certificates Docs</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <link rel="icon" href="https://vmware-tanzu.github.io/rotate-instance-identity-certificates/favicon.png">
+
+  
+  
+  <link rel="stylesheet" href="/rotate-instance-identity-certificates/css/style.min.f3a9adc7827f84d41f3ca1fcade00d65cc7b7e59490558fa13825bc15f69eadf.css">
+  
+  <link rel="stylesheet" href="/rotate-instance-identity-certificates/css/copybutton.min.476cf5dd65a9af9c023c92279ab68dc31211540d4623c8e36c1b7e2d06ed31e4.css">
+  
+
+  
+
+</head>
+
+<body class='page page-default-single'>
+  <div id="main-menu-mobile" class="main-menu-mobile">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/rotate-instance-identity-certificates/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/rotate-instance-identity-certificates/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-releases">
+      <a href="https://github.com/vmware-tanzu/rotate-instance-identity-certificates/releases">
+        <span>Releases</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+  <div class="wrapper">
+    <div class='header'>
+  <div class="container">
+    <div class="logo">
+      <a href="https://vmware-tanzu.github.io/rotate-instance-identity-certificates"><img alt="Logo" src="https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/images/GUID-8546DDD9-718A-42F7-9EDB-0BCC3A316BB6-low.png" /></a>
+    </div>
+    <div class="logo-mobile">
+      <a href="https://vmware-tanzu.github.io/rotate-instance-identity-certificates"><img alt="Logo" src="/rotate-instance-identity-certificates" /></a>
+    </div>
+    <div id="main-menu" class="main-menu">
+  <ul>
+    
+    
+    <li class="menu-item-home">
+      <a href="/rotate-instance-identity-certificates/">
+        <span>Home</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-docs">
+      <a href="/rotate-instance-identity-certificates/docs/">
+        <span>Docs</span>
+      </a>
+    </li>
+    
+    <li class="menu-item-releases">
+      <a href="https://github.com/vmware-tanzu/rotate-instance-identity-certificates/releases">
+        <span>Releases</span>
+      </a>
+    </li>
+    
+  </ul>
+</div>
+    <button id="toggle-main-menu-mobile" class="hamburger hamburger--slider" type="button">
+  <span class="hamburger-box">
+    <span class="hamburger-inner"></span>
+  </span>
+</button>
+  </div>
+</div>
+
+
+    
+    
+    
+    
+    
+    
+
+    
+    <div class="container pt-2 pt-md-6 pb-3 pb-md-6">
+      <div class="row">
+        <div class="col-12 col-md-3 mb-3">
+          <div class="sidebar">
+            
+<div class="docs-menu">
+  <h4>Docs</h4>
+  <ul>
+    
+    <li class="active ">
+      <a href="https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/overview/">Overview</a>
+    </li>
+    
+    <li class="">
+      <a href="https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/running/">Running the Tool</a>
+    </li>
+    
+    <li class="">
+      <a href="https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/faq/">Frequenty Asked Questions</a>
+    </li>
+    
+  </ul>
+</div>
+
+          </div>
+        </div>
+        <div class="col-12 col-md-9">
+          
+<h1 class="title">Overview</h1>
+<div class="content ">
+  <h2 id="intro">Intro</h2>
+<p>Tanzu Application Service (TAS) includes an internal certificate authority that
+is used to sign instance identity certificates. These certificates are issued to
+each application instance and are used to verify application identity for
+routing and
+<a href="https://tanzu.vmware.com/content/blog/new-in-pcf-2-1-app-container-identity-assurance-via-automatic-cert-rotation">other features</a>.</p>
+<p>If these certificates expire, the platform will be unable to verify application
+identity and route requests to the correct applications, resulting in downtime
+for applications that are accessed through the platform routers.</p>
+<p>These certificate authorities are not renewable via API. The <em>recommended</em>
+approach to ensure that they do not expire is to upgrade TAS to version 2.7 or
+later, which has the effect of both renewing the certificates and making them
+rotatable via common APIs.</p>
+<p>For cases where you may be unable to complete this upgrade process prior to
+certificate expiration, you can leverage this tool to perform the rotation.</p>
+<h2 id="procedure">Procedure</h2>
+<p>The tool orchestrates a 3-step rotation process which was designed to ensure
+that the platform and applications do not experience connectivity issues during
+the rotation.</p>
+<ol>
+<li>Generate and deploy new certificates (side by side with existing certificates)</li>
+<li>Overwrite expiring certificates with new ones and redeploy</li>
+<li>Cleanup</li>
+</ol>
+<p>This rotation results in two deployments, so the total amount of time required
+depends on the size of the environment. The first deployment is performed
+directly with BOSH, which creates a temporary discrepancy between the BOSH state
+and the Operations Manager state. The final deployment is performed via
+Operations Manager in order to bring it back in sync with BOSH.</p>
+<p>Applications that are deployed with more than one instance should not expect an
+interruption in service during the rotation.</p>
+
+</div>
+</div>
+
+        </div>
+      </div>
+    </div>
+    
+  </div>
+
+  <div class="sub-footer">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="sub-footer-inner">
+          <ul>
+            <li class="zerostatic"><a href="https://www.zerostatic.io">www.zerostatic.io</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+  
+  
+
+  
+  
+
+  
+  
+  <script type="text/javascript" src="/rotate-instance-identity-certificates/js/scripts.min.1237ff71925bb8625c97a9af8db4c54525258bedfd7c47493daaff723bea755e.js"></script>
+  <script type="text/javascript" src="/rotate-instance-identity-certificates/js/copybutton.min.77c4760065e0857938ecfdd85f440240e070906eed2337a1089b8fd6de73f9f8.js"></script>
+  
+
+  
+  
+  
+    
+  
+
+
+</body>
+
+</html>
