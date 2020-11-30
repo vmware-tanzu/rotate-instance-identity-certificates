@@ -1,0 +1,405 @@
+addons: []
+instance_groups:
+- azs:
+  - pas-az1
+  - pas-az2
+  - pas-az3
+  env:
+    bosh:
+      password: $6$9b5ff6c7b132f1bd$NFlOB7zmKzOLan544oc8ARLzwrvcF6nLVriKWTFC59xuz8Sov76sh7/NxbZrLQUbDSBo87QP8wPfnPoipzGTZ1
+  instances: 2
+  jobs:
+  - consumes: {}
+    name: rep_windows
+    properties:
+      containers:
+        trusted_ca_certificates:
+        - ((/cf/diego-instance-identity-root-ca.certificate))
+        - |
+          -----BEGIN CERTIFICATE-----
+          MIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB
+          CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw
+          NTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+          dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry
+          Gr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE
+          uklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI
+          gl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr
+          8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL
+          hLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix
+          M7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA
+          MB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG
+          AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+          BjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r
+          Nf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx
+          DGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C
+          aGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM
+          mX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy
+          axGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==
+          -----END CERTIFICATE-----
+        - null
+      declarative_healthcheck_path: /var/vcap/packages/healthcheck_windows/internal
+      diego:
+        executor:
+          disk_capacity_mb: null
+          instance_identity_ca_cert: ((diego-instance-identity-intermediate-ca-2018.certificate))
+          instance_identity_key: ((diego-instance-identity-intermediate-ca-2018.private_key))
+          memory_capacity_mb: null
+        rep:
+          locket:
+            api_location: locket.service.cf.internal:8891
+          open_bindmounts_acl: true
+          placement_tags: []
+          preloaded_rootfses:
+          - windows2016:oci:///C:/var/vcap/packages/windows1803fs
+          - windows:oci:///C:/var/vcap/packages/windows1803fs
+          use_azure_fault_domains: true
+      enable_consul_service_registration: false
+      enable_declarative_healthcheck: true
+      logging:
+        format:
+          timestamp: rfc3339
+      loggregator:
+        ca_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB
+          CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw
+          NTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+          dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry
+          Gr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE
+          uklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI
+          gl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr
+          8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL
+          hLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix
+          M7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA
+          MB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG
+          AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+          BjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r
+          Nf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx
+          DGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C
+          aGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM
+          mX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy
+          axGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==
+          -----END CERTIFICATE-----
+        cert: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/loggregator_client_cert.cert_pem))
+        key: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/loggregator_client_cert.private_key_pem))
+        use_v2_api: true
+      tls:
+        ca_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB
+          CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw
+          NTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+          dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry
+          Gr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE
+          uklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI
+          gl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr
+          8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL
+          hLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix
+          M7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA
+          MB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG
+          AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+          BjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r
+          Nf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx
+          DGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C
+          aGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM
+          mX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy
+          axGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==
+          -----END CERTIFICATE-----
+        cert: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/rep_server_cert_v2.cert_pem))
+        key: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/rep_server_cert_v2.private_key_pem))
+    provides: {}
+    release: diego
+  - consumes:
+      nats:
+        deployment: cf-3e6b71ab5a6736db362b
+        from: nats
+    name: route_emitter_windows
+    properties:
+      diego:
+        route_emitter:
+          bbs:
+            ca_cert: |
+              -----BEGIN CERTIFICATE-----
+              MIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB
+              CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw
+              NTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+              dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry
+              Gr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE
+              uklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI
+              gl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr
+              8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL
+              hLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix
+              M7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA
+              MB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG
+              AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+              BjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r
+              Nf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx
+              DGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C
+              aGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM
+              mX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy
+              axGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==
+              -----END CERTIFICATE-----
+            client_cert: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/bbs_client_cert.cert_pem))
+            client_key: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/bbs_client_cert.private_key_pem))
+          local_mode: true
+      logging:
+        format:
+          timestamp: rfc3339
+      loggregator:
+        ca_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB
+          CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw
+          NTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+          dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry
+          Gr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE
+          uklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI
+          gl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr
+          8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL
+          hLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix
+          M7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA
+          MB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG
+          AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+          BjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r
+          Nf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx
+          DGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C
+          aGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM
+          mX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy
+          axGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==
+          -----END CERTIFICATE-----
+        cert: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/loggregator_client_cert.cert_pem))
+        key: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/loggregator_client_cert.private_key_pem))
+        use_v2_api: true
+      tcp:
+        enabled: true
+      uaa:
+        ca_cert: |
+          -----BEGIN CERTIFICATE-----
+          MIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB
+          CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw
+          NTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+          dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry
+          Gr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE
+          uklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI
+          gl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr
+          8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL
+          hLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix
+          M7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA
+          MB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG
+          AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+          BjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r
+          Nf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx
+          DGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C
+          aGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM
+          mX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy
+          axGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==
+          -----END CERTIFICATE-----
+        client_name: tcp_emitter
+        client_secret: ((/opsmgr/cf-3e6b71ab5a6736db362b/uaa/tcp_emitter_credentials.password))
+    provides: {}
+    release: diego
+  - consumes: {}
+    name: event_log_forwarder
+    properties:
+      syslog:
+        enabled: false
+    provides: {}
+    release: event-log
+  - consumes: {}
+    name: garden-windows
+    properties:
+      garden:
+        destroy_containers_on_start: true
+        image_plugin: /var/vcap/packages/groot/groot.exe
+        image_plugin_extra_args:
+        - --driver-store=/var/vcap/data/groot
+        - --config=/var/vcap/jobs/groot/config/groot.yml
+        listen_address: 127.0.0.1:9241
+        network_plugin: /var/vcap/packages/winc-network-hns-acls/winc-network.exe
+        network_plugin_extra_args:
+        - --configFile=/var/vcap/jobs/winc-network-hns-acls/config/interface.json
+        - --log=/var/vcap/sys/log/winc-network-hns-acls/winc-network.log
+        nstar_bin: /var/vcap/packages/nstar/nstar.exe
+        runtime_plugin: /var/vcap/packages/winc/winc.exe
+    provides: {}
+    release: garden-runc
+  - consumes: {}
+    name: winc
+    provides: {}
+    release: winc
+  - consumes: {}
+    name: groot
+    properties:
+      groot:
+        cached_image_uris:
+        - oci:///C:/var/vcap/packages/windows1803fs
+        driver_store: /var/vcap/data/groot
+    provides: {}
+    release: winc
+  - consumes: {}
+    name: winc-network-hns-acls
+    properties:
+      winc_network:
+        dns_servers:
+        - 172.30.0.1
+        mtu: 1454
+    provides: {}
+    release: winc
+  - consumes: {}
+    name: loggregator_agent_windows
+    properties:
+      deployment: ""
+      loggregator:
+        tls:
+          agent:
+            cert: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/loggregator_agent_tls_cert.cert_pem))
+            key: ((/opsmgr/pas-windows-f9239c09b3772fdf6a12/loggregator_agent_tls_cert.private_key_pem))
+          ca_cert: |
+            -----BEGIN CERTIFICATE-----
+            MIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB
+            CwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw
+            NTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp
+            dm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry
+            Gr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE
+            uklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI
+            gl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr
+            8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL
+            hLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix
+            M7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA
+            MB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG
+            AQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB
+            BjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r
+            Nf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx
+            DGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C
+            aGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM
+            mX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy
+            axGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==
+            -----END CERTIFICATE-----
+        use_v2_api: true
+      tags:
+        placement_tag: null
+        product: Pivotal Application Service for Windows
+        system_domain: run.haas-404.pez.vmware.com
+    provides: {}
+    release: loggregator-agent
+  - consumes: {}
+    name: enable_rdp
+    properties:
+      enable_rdp:
+        enabled: false
+    provides: {}
+    release: windows-utilities
+  - consumes: {}
+    name: enable_ssh
+    properties:
+      enable_ssh:
+        enabled: true
+    provides: {}
+    release: windows-utilities
+  - consumes: {}
+    name: set_kms_host
+    properties:
+      set_kms_host:
+        enabled: false
+    provides: {}
+    release: windows-utilities
+  - consumes: {}
+    name: set_password
+    properties:
+      set_password:
+        enabled: false
+    provides: {}
+    release: windows-utilities
+  - consumes: {}
+    name: windows1803fs
+    properties:
+      windows-rootfs:
+        trusted_certs: "((/cf/diego-instance-identity-root-ca.certificate)) -----BEGIN
+          CERTIFICATE-----\nMIIDUTCCAjmgAwIBAgIVAJZz7nyauXNowH7p47mHF0/J8g6DMA0GCSqGSIb3DQEB\nCwUAMB8xCzAJBgNVBAYTAlVTMRAwDgYDVQQKDAdQaXZvdGFsMB4XDTIwMTAwMTAw\nNTk1M1oXDTI0MTAwMjAwNTk1M1owHzELMAkGA1UEBhMCVVMxEDAOBgNVBAoMB1Bp\ndm90YWwwggEiMA0GCSqGSIb3DQEBAQUAA4IBDwAwggEKAoIBAQC408nIr2Ba0Kry\nGr9iZHsrrJDyzlmeT4B2+nkCTJvu4ZHooHyw679ohgtHdtJQYO3FLOMSzYv9DySE\nuklmq7nCDbZFCfF95H3H//S4p9orbqcWKaNT+Myg07xn3PqI7sEV50jtR09EqvOI\ngl2RqcU+cVZzsw2gduVhmqgv9QI54l1WaEBQn1thTXIzMU6dyk8fn4YsLlPHbbAr\n8Ho+FJnTyWw4AAJc2KvAILQLZm6wlV5d0FOaYVT9IdtyCliLn79X4d68yiIm3hKL\nhLk6lZAWB6uZMZCHkTxVgw0AkHpgkNaRnym/KXU5qDw50k9o4gsXO46N9/mzXVix\nM7/IL9zBAgMBAAGjgYMwgYAwHQYDVR0OBBYEFApTYiKWILHuk8oj+bGkmliCV3hA\nMB8GA1UdIwQYMBaAFApTYiKWILHuk8oj+bGkmliCV3hAMB0GA1UdJQQWMBQGCCsG\nAQUFBwMCBggrBgEFBQcDATAPBgNVHRMBAf8EBTADAQH/MA4GA1UdDwEB/wQEAwIB\nBjANBgkqhkiG9w0BAQsFAAOCAQEAak6Iw2mUMKKj8d/RIdfYJ5zJjfrdnkJF7P4r\nNf6y12NvT8pPFm3lHK+R3qyEoy1VEuW0R6sNUsW9+DLqpMj6gRDr6hZixxNtOIMx\nDGl0quBKYhqVkdVxAT/kJLYCaGlH9OhcMsFPB3EBGzm9XkMdekCiW52JKEGBvW1C\naGy7HxlI+F0uCeOL81mPZCnXkqU3/WcI/hW8cwmCHnlKDHtmx9uk+bP3Of7oqVYM\nmX8lGNhd5FnqmaRT42m6+FgUyY66+8Jfxv1ToTTNa67l3O7gIxQQQELIdJliuEMy\naxGcouoVu6D8751uQxn4+TWMrQlLq8D80c34VvZrbl0H7ptwXQ==\n-----END
+          CERTIFICATE-----\n "
+    provides: {}
+    release: windows1803fs
+  - consumes: {}
+    name: install-hwc-buildpack
+    properties:
+      cf:
+        admin_password: ((/opsmgr/cf-3e6b71ab5a6736db362b/uaa/admin_credentials.password))
+        admin_username: admin
+        api_url: https://api.run.haas-404.pez.vmware.com
+        system_domain: run.haas-404.pez.vmware.com
+      ssl:
+        skip_cert_verify: false
+    provides: {}
+    release: hwc-offline-buildpack
+  - consumes: {}
+    name: smoke_tests_windows
+    properties:
+      smoke_tests:
+        api: https://api.run.haas-404.pez.vmware.com
+        apps_domain: cfapps.haas-404.pez.vmware.com
+        cf_dial_timeout_in_seconds: null
+        enable_windows_tests: true
+        org: system
+        password: ((/opsmgr/cf-3e6b71ab5a6736db362b/uaa/run_smoke_tests_credentials.password))
+        skip_ssl_validation: false
+        space: CF_SMOKE_TEST_SPACE
+        use_existing_org: true
+        use_existing_space: false
+        user: smoke_tests
+    provides: {}
+    release: cf-windows-smoke-tests
+  lifecycle: service
+  name: windows_diego_cell
+  networks:
+  - default:
+    - dns
+    - gateway
+    name: PAS-Deployment
+  properties: {}
+  stemcell: bosh-vsphere-esxi-windows1803-go_agent
+  update:
+    max_in_flight: 1
+  vm_type: xlarge.disk
+name: pas-windows-f9239c09b3772fdf6a12
+releases:
+- name: diego
+  version: 2.22.11
+- name: event-log
+  version: 0.7.0
+- name: garden-runc
+  version: 1.19.5
+- name: hwc-offline-buildpack
+  version: 3.1.10
+- name: loggregator
+  version: "103.4"
+- name: loggregator-agent
+  version: "2.3"
+- name: winc
+  version: 1.14.0
+- name: windows-utilities
+  version: 0.11.0
+- name: cf-windows-smoke-tests
+  version: 40.0.119
+- name: windows1803fs
+  version: 2.10.0
+stemcells:
+- alias: bosh-vsphere-esxi-windows1803-go_agent
+  os: windows1803
+  version: "1803.17"
+update:
+  canaries: 1
+  canary_watch_time: 30000-300000
+  max_errors: 2
+  max_in_flight: 1
+  serial: false
+  update_watch_time: 30000-300000
+variables:
+- name: diego-instance-identity-intermediate-ca-2018
+  options:
+    ca: /cf/diego-instance-identity-root-ca
+    common_name: Diego Instance Identity Intermediate CA
+    duration: 730
+    is_ca: true
+    key_usage:
+    - key_cert_sign
+  type: certificate

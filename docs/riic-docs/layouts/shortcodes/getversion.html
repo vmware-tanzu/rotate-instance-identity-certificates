@@ -1,0 +1,5 @@
+{{ $file := .Get "file" }}
+{{ if (fileExists $file) }}
+is version {{ $file | readFile -}} and
+{{- end }}
+

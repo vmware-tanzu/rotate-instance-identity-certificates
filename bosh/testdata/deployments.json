@@ -1,0 +1,39 @@
+{
+    "Tables": [
+        {
+            "Content": "deployments",
+            "Header": {
+                "name": "Name",
+                "release_s": "Release(s)",
+                "stemcell_s": "Stemcell(s)",
+                "team_s": "Team(s)"
+            },
+            "Rows": [
+                {
+                    "name": "cf-3e6b71ab5a6736db362b",
+                    "release_s": "backup-and-restore-sdk/1.17.2\nbinary-offline-buildpack/1.0.36\nbosh-dns/1.17.0\nbosh-dns-aliases/0.0.3\nbosh-system-metrics-forwarder/0.0.18\nbpm/1.1.1\ncapi/1.76.12\ncf-autoscaling/222\ncf-backup-and-restore/0.0.11\ncf-cli/1.24.0\ncf-networking/2.20.9\ncf-smoke-tests/40.0.127\ncf-syslog-drain/8.2.4\ncflinuxfs2/1.311.0\ncflinuxfs3/0.164.0\nconsul/198\nconsul-drain/0.0.3\ncredhub/2.1.11\ndiego/2.27.12\ndotnet-core-offline-buildpack/2.3.4\ngarden-runc/1.19.9\ngo-offline-buildpack/1.9.5\nhaproxy/9.5.2\nistio/1.0.2\njava-offline-buildpack/4.26\nlog-cache/2.1.12\nloggregator/103.4.4\nloggregator-agent/2.3.5\nmapfs/1.2.0\nmetric-registrar/1.1.1\nmysql-monitoring/9.2.0\nnats/26\nnfs-volume/1.7.12\nnginx-offline-buildpack/1.1.4\nnodejs-offline-buildpack/1.7.9\nnotifications/61\nnotifications-ui/36\nphp-offline-buildpack/4.4.6\npush-apps-manager-release/668.0.25\npush-usage-service-release/669.0.17\npxc/0.14.3\npython-offline-buildpack/1.7.6\nr-offline-buildpack/1.1.1\nrouting/0.187.9\nruby-offline-buildpack/1.8.8\nsilk/2.20.9\nsmb-volume/2.1.1\nstaticfile-offline-buildpack/1.5.3\nstatsd-injector/1.11.8\nsyslog/11.6.1\nuaa/71.7",
+                    "stemcell_s": "bosh-vsphere-esxi-ubuntu-xenial-go_agent/250.204",
+                    "team_s": ""
+                },
+                {
+                    "name": "p-isolation-segment-56025cc76d5913ca1a69",
+                    "release_s": "bosh-dns/1.17.0\nbosh-dns-aliases/0.0.3\nbpm/1.1.1\ncf-networking/2.20.9\ncflinuxfs2/1.311.0\ncflinuxfs3/0.164.0\ndiego/2.27.12\ngarden-runc/1.19.9\nhaproxy/9.5.2\nloggregator-agent/2.3.5\nmapfs/1.2.0\nnfs-volume/1.7.12\nrouting/0.187.9\nsilk/2.20.9\nsmb-volume/2.1.1\nsyslog/11.6.1",
+                    "stemcell_s": "bosh-vsphere-esxi-ubuntu-xenial-go_agent/250.204",
+                    "team_s": ""
+                },
+                {
+                    "name": "pas-windows-f9239c09b3772fdf6a12",
+                    "release_s": "bosh-dns/1.17.0\nbosh-dns-aliases/0.0.3\ncf-windows-smoke-tests/40.0.127\ndiego/2.27.12\nevent-log/0.7.0\ngarden-runc/1.19.9\nhwc-offline-buildpack/3.1.10\nloggregator/103.4.4\nloggregator-agent/2.3.5\nwinc/2.0.0\nwindows-utilities/0.11.0\nwindows2019fs/2.5.0",
+                    "stemcell_s": "bosh-vsphere-esxi-windows2019-go_agent/2019.27",
+                    "team_s": ""
+                }
+            ],
+            "Notes": null
+        }
+    ],
+    "Blocks": null,
+    "Lines": [
+        "Using environment '192.168.1.11' as client 'ops_manager'",
+        "Succeeded"
+    ]
+}

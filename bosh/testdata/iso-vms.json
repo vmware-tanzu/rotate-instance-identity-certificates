@@ -1,0 +1,87 @@
+{
+    "Tables": [
+        {
+            "Content": "vms",
+            "Header": {
+                "active": "Active",
+                "az": "AZ",
+                "instance": "Instance",
+                "ips": "IPs",
+                "process_state": "Process State",
+                "stemcell": "Stemcell",
+                "vm_cid": "VM CID",
+                "vm_type": "VM Type"
+            },
+            "Rows": [
+                {
+                    "active": "true",
+                    "az": "pas-az2",
+                    "instance": "isolated_diego_cell/88dabc7b-be3e-440e-999c-1c1efe4b6b14",
+                    "ips": "192.168.4.15",
+                    "process_state": "running",
+                    "stemcell": "-",
+                    "vm_cid": "vm-c5b40d8f-bc21-474b-ba9f-c340ae86984e",
+                    "vm_type": "xlarge.disk"
+                },
+                {
+                    "active": "true",
+                    "az": "pas-az1",
+                    "instance": "isolated_diego_cell/c3c50ebc-d7a7-443e-9b29-6f7b46ffb6c0",
+                    "ips": "192.168.4.14",
+                    "process_state": "running",
+                    "stemcell": "-",
+                    "vm_cid": "vm-82593b5a-5c9c-4457-a2fc-8143ded41427",
+                    "vm_type": "xlarge.disk"
+                },
+                {
+                    "active": "true",
+                    "az": "pas-az3",
+                    "instance": "isolated_diego_cell/f767ccac-da5c-4f1c-870d-2e6c82a57f24",
+                    "ips": "192.168.4.16",
+                    "process_state": "running",
+                    "stemcell": "-",
+                    "vm_cid": "vm-5d05b527-7d2c-41fe-a074-d586ba643d7c",
+                    "vm_type": "xlarge.disk"
+                },
+                {
+                    "active": "true",
+                    "az": "pas-az3",
+                    "instance": "isolated_router/47cbcaed-ad6c-4864-bd88-49514b64b3ee",
+                    "ips": "192.168.4.13",
+                    "process_state": "running",
+                    "stemcell": "-",
+                    "vm_cid": "vm-2b6e2643-dc0d-49e6-9f2f-725d06d46712",
+                    "vm_type": "micro"
+                },
+                {
+                    "active": "true",
+                    "az": "pas-az2",
+                    "instance": "isolated_router/7739f5cf-74c5-43b1-8a96-ea1dc99adc00",
+                    "ips": "192.168.4.12",
+                    "process_state": "running",
+                    "stemcell": "-",
+                    "vm_cid": "vm-fccf5355-4b74-4081-9974-bb2f64211b8e",
+                    "vm_type": "micro"
+                },
+                {
+                    "active": "true",
+                    "az": "pas-az1",
+                    "instance": "isolated_router/afdcc6ad-76c8-4e41-b692-8fbdb4bafc54",
+                    "ips": "192.168.4.11",
+                    "process_state": "running",
+                    "stemcell": "-",
+                    "vm_cid": "vm-4b67a74f-684c-4e9a-b052-0ecb156a6192",
+                    "vm_type": "micro"
+                }
+            ],
+            "Notes": null
+        }
+    ],
+    "Blocks": null,
+    "Lines": [
+        "Using environment '192.168.1.11' as client 'ops_manager'",
+        "Task 2291",
+        ". Done",
+        "Succeeded"
+    ]
+}

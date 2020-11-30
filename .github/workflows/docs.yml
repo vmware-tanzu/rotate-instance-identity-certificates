@@ -1,0 +1,48 @@
+on:
+  workflow_dispatch:
+  push:
+    branches:
+    - main
+    paths:
+    - docs/**
+
+name: Build and Deploy Docs
+jobs:
+  build:
+    name: Buid Docs
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v2
+        with:
+          submodules: true
+
+      - name: Check for submodule
+        run: |-
+          ls docs/riic-docs/themes
+          ls docs/riic-docs/themes/whisper
+      
+      - name: Build Docs
+        uses: klakegg/actions-hugo@1.0.0
+        with:
+          source: docs/riic-docs
+          target: docs/riic-docs/public
+          image: ext-debian
+          env: production
+      
+      - name: Deploy Docs
+        run: |-
+          mkdir ~/.ssh
+          echo "${{ secrets.PRIVATE_DEPLOY_KEY }}" > $HOME/.ssh/id_rsa
+          chmod 600 $HOME/.ssh/id_rsa
+
+          git clone --depth=1 --single-branch --branch gh-pages git@github.com:vmware-tanzu/rotate-instance-identity-certificates.git /tmp/gh-pages
+          rm -rf /tmp/gh-pages/*
+          cp -a docs/riic-docs/public/* /tmp/gh-pages
+
+          cd /tmp/gh-pages
+          git config user.email "tas-lts-upgrade-team@vmware.com"
+          git config user.name "Github Actions"
+          git add -A
+          git commit --allow-empty -am "Deploying docs from commit ${GITHUB_SHA}"
+          git push
