@@ -54,3 +54,19 @@ func TestIsoInstanceGroupNaming(t *testing.T) {
 		}
 	}
 }
+
+func TestIsoSegsWithoutRouters(t *testing.T) {
+	m, err := NewManifest("p-bosh", "testdata/p-isolation-segment-no-routers-manifest.yml")
+	if err != nil {
+		t.Fatal(err)
+	}
+
+	u := &IsoUpdater{
+		manifest: m,
+	}
+
+	err = u.useNewRootCert()
+	if err != nil {
+		t.Fatal(err)
+	}
+}

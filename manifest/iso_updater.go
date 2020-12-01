@@ -4,6 +4,7 @@
 package manifest
 
 import (
+	"errors"
 	"strings"
 
 	"github.com/mitchellh/pointerstructure"
@@ -41,9 +42,9 @@ func (u *IsoUpdater) useNewIntermediateCert() error {
 // trustNewRoot ensures that the new root certificate variable is a trusted
 // CA for each of the required jobs in the manifest
 func (u *IsoUpdater) useNewRootCert() error {
-	// TODO: Routers are optional, this could fail if none are deployed as part of the iso
+	// Routers are optional, check for ErrNotFound
 	gorouterProps := u.manifest.properties(u.instanceGroupName("isolated_router"), "gorouter")
-	if err := addRootCertRegen(gorouterProps, "/router/ca_certs"); err != nil {
+	if err := addRootCertRegen(gorouterProps, "/router/ca_certs"); err != nil && !errors.Is(err, pointerstructure.ErrNotFound) {
 		return err
 	}
 
