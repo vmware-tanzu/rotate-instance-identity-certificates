@@ -16,11 +16,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           submodules: true
-
-      - name: Check for submodule
-        run: |-
-          ls docs/riic-docs/themes
-          ls docs/riic-docs/themes/whisper
       
       - name: Build Docs
         uses: klakegg/actions-hugo@1.0.0
