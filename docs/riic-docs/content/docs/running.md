@@ -32,7 +32,7 @@ each deployment and validate the certs match what is in Credhub.
 
 ## Prerequisites
 
-Download the latest binary from the [releases](/releases) page. This is a linux
+Download the latest binary from the [releases](https://github.com/vmware-tanzu/rotate-instance-identity-certificates/releases) page. This is a linux
 binary that will only run on the Operations Manager VM. Copy the binary to your
 Operations Manager VM:
 
