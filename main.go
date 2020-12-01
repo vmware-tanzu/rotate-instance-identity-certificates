@@ -197,7 +197,7 @@ func ValidateVersion(om *om.API) error {
 	}
 
 	switch parts[1] {
-	case "3", "4", "5", "6":
+	case "4", "5", "6":
 		return nil
 	default:
 		return fmt.Errorf("invalid cf version %s", cfVersion)
@@ -302,10 +302,10 @@ func canBeInteractive() bool {
 	return isatty.IsTerminal(os.Stdout.Fd()) || isatty.IsCygwinTerminal(os.Stdout.Fd())
 }
 
-const banner = `      (_|_)     
-  _ __ _ _  ___ 
+const banner = `      (_|_)
+  _ __ _ _  ___
  | '__| | |/ __|
- | |  | | | (__ 
+ | |  | | | (__
  |_|  |_|_|\___|
 `
 
