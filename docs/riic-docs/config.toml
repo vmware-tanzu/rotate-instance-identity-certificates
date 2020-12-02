@@ -1,35 +1,18 @@
 baseURL = "https://vmware-tanzu.github.io/rotate-instance-identity-certificates"
-languageCode = "en-us"
+languageCode = "en-US"
+defaultContentLanguage = "en"
+
 title = "Rotate Instance Identity Certificates Docs"
-theme = "whisper"
-
-[[menu.main]]
-    name = "Home"
-    url = "/"
-    weight = 1
-
-[[menu.main]]
-    name = "Docs"
-    url = "/docs/"
-    weight = 2
-
-[[menu.main]]
-    name = "Releases"
-    url = "https://github.com/vmware-tanzu/rotate-instance-identity-certificates/releases"
-    weight = 3
+theme = "learn"
 
 [params]
-    homepage_button_link = '/docs'
-    homepage_button_text = 'Read the Docs'
-    homepage_intro = 'Tooling to rotate the Diego Instance Identity Certificates on TAS 2.4, 2.5, and 2.6.'
-
-    [params.homepage_meta_tags]
-        meta_og_title = "Rotate Instance Identity Certificates"
-        meta_og_type = "website"
-        meta_og_url = "https://vmware-tanzu.github.io/rotate-instance-identity-certificates"
-        meta_og_image = "https://d1fto35gcfffzn.cloudfront.net/tanzu/tanzu-bug.svg"
-        meta_twitter_card = "summary"
-        meta_twitter_site = "@VMwareTanzu"
-    
-    [params.logo]
-        standard = "https://docs.vmware.com/en/VMware-Tanzu-Kubernetes-Grid/images/GUID-8546DDD9-718A-42F7-9EDB-0BCC3A316BB6-low.png"
+    editURL = "https://github.com/vmware-tanzu/rotate-instance-identity-certificates/edit/main/docs/riic-docs/"
+    decription = "Tooling to rotate the Diego Instance Identity Certificates on TAS 2.4, 2.5, and 2.6."
+    author = "VMware Tanzu"
+        
+    themeVariant = "blue"
+    canonifyURLs = true
+    disableLandingPageButton = true # it links to / and gh-pages puts us on a /path
+    disableSearch = true
+    showVisitedLinks = true
+    disableMermaid = true

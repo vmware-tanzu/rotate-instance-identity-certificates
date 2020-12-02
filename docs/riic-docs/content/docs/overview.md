@@ -17,13 +17,15 @@ If these certificates expire, the platform will be unable to verify application
 identity and route requests to the correct applications, resulting in downtime
 for applications that are accessed through the platform routers.
 
-These certificate authorities are not renewable via API. The _recommended_
-approach to ensure that they do not expire is to upgrade TAS to version 2.7 or
-later, which has the effect of both renewing the certificates and making them
-rotatable via common APIs.
+These certificate authorities are not renewable via API.
 
-For cases where you may be unable to complete this upgrade process prior to
-certificate expiration, you can leverage this tool to perform the rotation.
+{{% notice note %}}
+The _preferred_ approach to ensuring that these certificates do not expire is
+to upgrade TAS to version 2.7 or later, which has the effect of both renewing
+the certificates and making them rotatable via common APIs. This tool is a
+good option if you cannot complete the upgrade process prior to the certificate
+expiration date.
+{{% /notice %}}
 
 ## Procedure
 

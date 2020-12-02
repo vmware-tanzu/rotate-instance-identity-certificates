@@ -14,8 +14,10 @@ certs on upgrade.
 The tool operates on all BOSH deployments that have Diego cells, including TAS,
 TASW, and Isolation Segments for TAS.
 
-_NOTE_ - we only support the full TAS deployment - small footprint runtime is
-not currently supported.
+{{% notice info %}}
+Note: we only support the full TAS deployment - small
+footprint runtime is not currently supported.
+{{% /notice %}}
 
 The rotation process is a 2 step process:
 
@@ -40,7 +42,7 @@ Operations Manager VM:
 $ scp ~/Downloads/riic -i ops-manager-private-key.pem ubuntu@ops-manager-fqdn:~/riic
 ```
 
-It's recommended that the tool is run using `nohup`. This is important because
+We recommend running the tool using `nohup`. This is important because
 if you run a rotate command directly from your SSH session and your connection
 terminates, so does the rotation process, potentially leaving your foundation in
 an indeterminite state. To start the tool in this way run the following:
@@ -117,7 +119,9 @@ before trying again.
 Once you're running as `tempest-web`, run the following command to begin the
 rotation:
 
-_NOTE:_ We recommend you run the rotate command using `nohup` as noted above.
+{{% notice tip %}}
+The following examples run the rotate command using `nohup` as noted above.
+{{% /notice %}}
 
 ```bash
 $ nohup ./riic --username admin rotate &
