@@ -1,5 +1,5 @@
 ---
-title: "Frequenty Asked Questions"
+title: "Frequently Asked Questions"
 date: 2020-11-02T13:42:03-07:00
 draft: false
 weight: 999

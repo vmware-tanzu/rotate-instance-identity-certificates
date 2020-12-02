@@ -1,3 +1,6 @@
 [submodule "docs/riic-docs/themes/whisper"]
 	path = docs/riic-docs/themes/whisper
 	url = https://github.com/jugglerx/hugo-whisper-theme.git
+[submodule "docs/riic-docs/themes/learn"]
+	path = docs/riic-docs/themes/learn
+	url = http://github.com/matcornic/hugo-theme-learn.git
