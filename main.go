@@ -157,7 +157,7 @@ func main() {
 		rotator := rotate.NewCertRotator(om, boshRunner, credhubRunner, manifestLoader, diegoValidator, routerValidator)
 		err = rotator.RotateCerts(cli.Rotate.StartPhase)
 		if err != nil {
-			fmt.Fprintf(os.Stderr, "%s\n", err)
+			fmt.Fprintf(os.Stderr, "Rotation Failed, exiting due to error: %s\n", err)
 			os.Exit(1)
 		}
 		fmt.Print("\n\nFinished rotating certs\n\n")
