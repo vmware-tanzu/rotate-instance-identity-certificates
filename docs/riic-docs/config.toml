@@ -6,7 +6,7 @@ title = "Rotate Instance Identity Certificates Docs"
 theme = "learn"
 
 [params]
-    editURL = "https://github.com/vmware-tanzu/rotate-instance-identity-certificates/edit/main/docs/riic-docs/"
+    editURL = "https://github.com/vmware-tanzu/rotate-instance-identity-certificates/edit/main/docs/riic-docs/content"
     decription = "Tooling to rotate the Diego Instance Identity Certificates on TAS 2.4, 2.5, and 2.6."
     author = "VMware Tanzu"
         
