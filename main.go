@@ -1,5 +1,5 @@
 // Copyright 2020 VMware, Inc.
-// SPDC-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 
 // Command riic rotates the Diego Instance Identity Certificate.
 // It is intended to run from the Operations Manager VM.

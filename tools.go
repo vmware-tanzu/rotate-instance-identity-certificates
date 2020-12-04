@@ -1,7 +1,7 @@
 // +build tools
 
 // Copyright 2020 VMware, Inc.
-// SPDC-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 
 package tools
 

@@ -1,5 +1,5 @@
 // Copyright 2020 VMware, Inc.
-// SPDC-License-Identifier: Apache-2.0
+// SPDX-License-Identifier: Apache-2.0
 
 // Package manifest performs the necessary operations on the Cloud Foundry
 // manifest in order to rotate the Diego instance identity certificate.
