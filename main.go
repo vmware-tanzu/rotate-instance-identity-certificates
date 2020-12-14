@@ -302,7 +302,7 @@ func canBeInteractive() bool {
 	return isatty.IsTerminal(os.Stdout.Fd()) || isatty.IsCygwinTerminal(os.Stdout.Fd())
 }
 
-const banner = `      (_|_)
+const banner = `       O O
   _ __ _ _  ___
  | '__| | |/ __|
  | |  | | | (__
