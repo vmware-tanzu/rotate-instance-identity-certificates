@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.79.0" />
+    <meta name="generator" content="Hugo 0.80.0" />
     <meta name="description" content="">
 <meta name="author" content="VMware Tanzu">
 
@@ -12,21 +12,21 @@
     <title>Frequently Asked Questions :: Rotate Instance Identity Certificates Docs</title>
 
     
-    <link href="/rotate-instance-identity-certificates/css/nucleus.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/fontawesome-all.min.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/hybrid.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/featherlight.min.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/perfect-scrollbar.min.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/auto-complete.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/atom-one-dark-reasonable.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/theme.css?1607017839" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/hugo-theme.css?1607017839" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/nucleus.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/fontawesome-all.min.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/hybrid.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/featherlight.min.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/perfect-scrollbar.min.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/auto-complete.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/atom-one-dark-reasonable.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/theme.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/hugo-theme.css?1610741019" rel="stylesheet">
     
-    <link href="/rotate-instance-identity-certificates/css/theme-blue.css?1607017839" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/theme-blue.css?1610741019" rel="stylesheet">
     
     
 
-    <script src="/rotate-instance-identity-certificates/js/jquery-3.3.1.min.js?1607017839"></script>
+    <script src="/rotate-instance-identity-certificates/js/jquery-3.3.1.min.js?1610741019"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -284,7 +284,7 @@
     <li><a href="#should-i-expect-downtime-during-the-rotation">Should I expect downtime during the rotation?</a></li>
     <li><a href="#does-this-tool-support-the-small-footprint-runtime">Does this tool support the Small Footprint Runtime?</a></li>
     <li><a href="#does-this-tool-support-isolation-segments-or-tas-for-windows">Does this tool support isolation segments or TAS for Windows?</a></li>
-    <li><a href="#the-logs-are-very-verbose-can-i-troubleshoot-what-the-tool-is-doing-without">The logs are very verbose, can I troubleshoot what the tool is doing without</a></li>
+    <li><a href="#any-tips-for-dealing-with-the-verbosity-of-the-logs">Any tips for dealing with the verbosity of the logs?</a></li>
   </ul>
 </nav>
     </div>
@@ -338,9 +338,8 @@ correctly configured to detect unhealthy routers.</p>
 <p>Yes. The tool will automatically detect whether isolation segments or Windows
 cells are installed, and will perform the appropriate actions to rotate the
 certificates on these environments as well.</p>
-<h2 id="the-logs-are-very-verbose-can-i-troubleshoot-what-the-tool-is-doing-without">The logs are very verbose, can I troubleshoot what the tool is doing without</h2>
-<p>seeing all of the output?</p>
-<p>Yes. Output coming directly from the tool and not BOSH is prefixed with &ldquo;RIIC&rdquo;
+<h2 id="any-tips-for-dealing-with-the-verbosity-of-the-logs">Any tips for dealing with the verbosity of the logs?</h2>
+<p>Yes. Output coming directly from the tool (and not from BOSH) is prefixed with &ldquo;RIIC&rdquo;
 for easy grepping:</p>
 <pre><code>$ grep RIIC nohup.out
 </code></pre>
@@ -485,16 +484,16 @@ for easy grepping:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rotate-instance-identity-certificates/js/clipboard.min.js?1607017839"></script>
-    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.min.js?1607017839"></script>
-    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.jquery.min.js?1607017839"></script>
-    <script src="/rotate-instance-identity-certificates/js/jquery.sticky.js?1607017839"></script>
-    <script src="/rotate-instance-identity-certificates/js/featherlight.min.js?1607017839"></script>
-    <script src="/rotate-instance-identity-certificates/js/highlight.pack.js?1607017839"></script>
+    <script src="/rotate-instance-identity-certificates/js/clipboard.min.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.min.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.jquery.min.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/jquery.sticky.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/featherlight.min.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/highlight.pack.js?1610741019"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rotate-instance-identity-certificates/js/modernizr.custom-3.6.0.js?1607017839"></script>
-    <script src="/rotate-instance-identity-certificates/js/learn.js?1607017839"></script>
-    <script src="/rotate-instance-identity-certificates/js/hugo-learn.js?1607017839"></script>
+    <script src="/rotate-instance-identity-certificates/js/modernizr.custom-3.6.0.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/learn.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/hugo-learn.js?1610741019"></script>
     
     
 
