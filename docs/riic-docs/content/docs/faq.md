@@ -45,11 +45,9 @@ Yes. The tool will automatically detect whether isolation segments or Windows
 cells are installed, and will perform the appropriate actions to rotate the
 certificates on these environments as well.
 
-## The logs are very verbose, can I troubleshoot what the tool is doing without
+## Any tips for dealing with the verbosity of the logs?
 
-seeing all of the output?
-
-Yes. Output coming directly from the tool and not BOSH is prefixed with "RIIC"
+Yes. Output coming directly from the tool (and not from BOSH) is prefixed with "RIIC"
 for easy grepping:
 
 ```
