@@ -12,21 +12,21 @@
     <title>Frequently Asked Questions :: Rotate Instance Identity Certificates Docs</title>
 
     
-    <link href="/rotate-instance-identity-certificates/css/nucleus.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/fontawesome-all.min.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/hybrid.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/featherlight.min.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/perfect-scrollbar.min.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/auto-complete.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/atom-one-dark-reasonable.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/theme.css?1610741019" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/hugo-theme.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/nucleus.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/fontawesome-all.min.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/hybrid.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/featherlight.min.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/perfect-scrollbar.min.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/auto-complete.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/atom-one-dark-reasonable.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/theme.css?1611078004" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/hugo-theme.css?1611078004" rel="stylesheet">
     
-    <link href="/rotate-instance-identity-certificates/css/theme-blue.css?1610741019" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/theme-blue.css?1611078004" rel="stylesheet">
     
     
 
-    <script src="/rotate-instance-identity-certificates/js/jquery-3.3.1.min.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/jquery-3.3.1.min.js?1611078004"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -285,6 +285,8 @@
     <li><a href="#does-this-tool-support-the-small-footprint-runtime">Does this tool support the Small Footprint Runtime?</a></li>
     <li><a href="#does-this-tool-support-isolation-segments-or-tas-for-windows">Does this tool support isolation segments or TAS for Windows?</a></li>
     <li><a href="#any-tips-for-dealing-with-the-verbosity-of-the-logs">Any tips for dealing with the verbosity of the logs?</a></li>
+    <li><a href="#why-does-riic-say-there-are-pending-changes">Why does riic say there are pending changes?</a></li>
+    <li><a href="#can-i-restart-a-cert-rotation-at-a-specific-step">Can I restart a cert rotation at a specific step?</a></li>
   </ul>
 </nav>
     </div>
@@ -342,7 +344,31 @@ certificates on these environments as well.</p>
 <p>Yes. Output coming directly from the tool (and not from BOSH) is prefixed with &ldquo;RIIC&rdquo;
 for easy grepping:</p>
 <pre><code>$ grep RIIC nohup.out
-</code></pre>
+</code></pre><h2 id="why-does-riic-say-there-are-pending-changes">Why does riic say there are pending changes?</h2>
+<p>It&rsquo;s important that any pending changes staged in Operations Manager are applied or reverted before attempting to rotate certificates with riic. Doing otherwise may lead to downtime. You can check for pending changes in the Operations Manager UI, however some changes like stemcell updates won&rsquo;t show up here.</p>
+<p>To find all pending changes open the URL <code>https://&lt;your-opsman.fqdn&gt;/api/v0/staged/pending_changes</code> from your logged in browser. In the json response look for any products that do not have an <code>action</code> of <code>unchanged</code>. That should give a clue as to what changes are actually pending and keeping riic from running. For example a stemcell update would show up with an <code>action</code> of <code>update</code>.</p>
+<h2 id="can-i-restart-a-cert-rotation-at-a-specific-step">Can I restart a cert rotation at a specific step?</h2>
+<p>In some cases deployments may fail, leaving the rotation in a partially
+completed state. In these scenarios, you may need to re-run the tool and have it
+pick up at a specific step.</p>
+<p>There is a hidden command-line flag that can be used to do this, but be careful.
+The flag is hidden intentionally as starting at the wrong step can cause a broken
+deployment and downtime for applications.</p>
+<p>To start at a specific step, run the tool with the <code>--start-phase</code> argument. The
+default start phase is <code>bosh</code> - which starts by creating a new BOSH deployment
+with freshly-generated certificates.</p>
+<p>For example:</p>
+<pre><code>$ riic --username=admin rotate --start-phase=credhub
+</code></pre><p>Valid start phases are:</p>
+<ul>
+<li><code>bosh</code>: start by modifying the manifests and performing a BOSH deployment</li>
+<li><code>credhub</code>: start by updating the original certs in Credhub with the newly generated ones</li>
+<li><code>apply</code>: start with the Operations Manager apply changes step</li>
+<li><code>cleanup</code>: simply remove the duplcate certificate reference from Credhub and exit</li>
+</ul>
+<p>Specifying anything other than one of these values is equivalent to passing
+<code>bosh</code>, which will start the process from the beginning.</p>
+
 
 <footer class="footline">
 	
@@ -484,16 +510,16 @@ for easy grepping:</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rotate-instance-identity-certificates/js/clipboard.min.js?1610741019"></script>
-    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.min.js?1610741019"></script>
-    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.jquery.min.js?1610741019"></script>
-    <script src="/rotate-instance-identity-certificates/js/jquery.sticky.js?1610741019"></script>
-    <script src="/rotate-instance-identity-certificates/js/featherlight.min.js?1610741019"></script>
-    <script src="/rotate-instance-identity-certificates/js/highlight.pack.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/clipboard.min.js?1611078004"></script>
+    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.min.js?1611078004"></script>
+    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.jquery.min.js?1611078004"></script>
+    <script src="/rotate-instance-identity-certificates/js/jquery.sticky.js?1611078004"></script>
+    <script src="/rotate-instance-identity-certificates/js/featherlight.min.js?1611078004"></script>
+    <script src="/rotate-instance-identity-certificates/js/highlight.pack.js?1611078004"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rotate-instance-identity-certificates/js/modernizr.custom-3.6.0.js?1610741019"></script>
-    <script src="/rotate-instance-identity-certificates/js/learn.js?1610741019"></script>
-    <script src="/rotate-instance-identity-certificates/js/hugo-learn.js?1610741019"></script>
+    <script src="/rotate-instance-identity-certificates/js/modernizr.custom-3.6.0.js?1611078004"></script>
+    <script src="/rotate-instance-identity-certificates/js/learn.js?1611078004"></script>
+    <script src="/rotate-instance-identity-certificates/js/hugo-learn.js?1611078004"></script>
     
     
 
