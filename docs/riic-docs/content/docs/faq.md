@@ -85,7 +85,7 @@ Valid start phases are:
 - `bosh`: start by modifying the manifests and performing a BOSH deployment
 - `credhub`: start by updating the original certs in Credhub with the newly generated ones
 - `apply`: start with the Operations Manager apply changes step
-- `cleanup`: simply remove the duplcate certificate reference from Credhub and exit
+- `cleanup`: simply remove the duplicate certificate reference from Credhub and exit
 
 Specifying anything other than one of these values is equivalent to passing
 `bosh`, which will start the process from the beginning.
