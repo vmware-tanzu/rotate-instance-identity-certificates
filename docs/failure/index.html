@@ -9,7 +9,7 @@
 
     <link rel="icon" href="/rotate-instance-identity-certificates/images/favicon.png" type="image/png">
 
-    <title>Tags :: Rotate Instance Identity Certificates Docs</title>
+    <title>Handling Failures :: Rotate Instance Identity Certificates Docs</title>
 
     
     <link href="/rotate-instance-identity-certificates/css/nucleus.css?1611081111" rel="stylesheet">
@@ -36,7 +36,7 @@
     </style>
     
   </head>
-  <body class="" data-url="/rotate-instance-identity-certificates/tags/">
+  <body class="" data-url="/rotate-instance-identity-certificates/docs/failure/">
     <nav id="sidebar" class="showVisitedLinks">
 
 
@@ -64,7 +64,7 @@
   
     
     <li data-nav-id="/rotate-instance-identity-certificates/docs/" title="Docs" class="dd-item
-        
+        parent
         
         
         ">
@@ -134,7 +134,7 @@
  
   
     
-      <li data-nav-id="/rotate-instance-identity-certificates/docs/failure/" title="Handling Failures" class="dd-item ">
+      <li data-nav-id="/rotate-instance-identity-certificates/docs/failure/" title="Handling Failures" class="dd-item active">
         <a href="/rotate-instance-identity-certificates/docs/failure/">
         Handling Failures
         <i class="fas fa-check read-icon"></i>
@@ -250,6 +250,17 @@
               <div>
                 <div id="top-bar">
                 
+                  
+                  
+                  
+                  <div id="top-github-link">
+                    <a class="github-link" title='Edit this page' href="https://github.com/vmware-tanzu/rotate-instance-identity-certificates/edit/main/docs/riic-docs/contentdocs/failure.md" target="blank">
+                      <i class="fas fa-code-branch"></i>
+                      <span id="top-github-link-text">Edit this page</span>
+                    </a>
+                  </div>
+                  
+                
                 
                 <div id="breadcrumbs" itemscope="" itemtype="http://data-vocabulary.org/Breadcrumb">
                     <span id="sidebar-toggle-span">
@@ -270,7 +281,13 @@
             
           
           
-            <a href='/rotate-instance-identity-certificates/'>Rotate Instance Identity Certificates</a> > Tags
+            
+            
+          
+          
+            <a href='/rotate-instance-identity-certificates/'>Rotate Instance Identity Certificates</a> > <a href='/rotate-instance-identity-certificates/docs/'>Docs</a> > Handling Failures
+          
+        
           
         
           
@@ -281,7 +298,7 @@
                 
                     <div class="progress">
     <div class="wrapper">
-
+<nav id="TableOfContents"></nav>
     </div>
 </div>
 
@@ -297,24 +314,49 @@
           
             <h1>
               
-                tag ::
-              
-              Tags
+              Handling Failures
             </h1>
           
 
         
 
 
+<p>In some cases deployments may fail, leaving the certificate rotation in a partially
+completed state. It&rsquo;s safe to re-run riic from the beginning after you&rsquo;ve addressed
+whatever failure may have occurred. In some situations you may not want to wait for
+all of the riic steps to re-run. In these scenarios, you can have it pick up at a
+specific step using a purposely hidden command-line flag.</p>
 
+<div class="notices warning" ><p>Starting at the wrong step can cause a broken deployment and downtime for applications.</p>
+</div>
 
-
+<p>To start at a specific step, run the tool with the <code>--start-phase</code> argument. The
+default start phase is <code>bosh</code> - which starts by doing a direct bosh deploy of the
+freshly-generated certificates.</p>
+<p>For example:</p>
+<pre><code>$ riic --username=admin rotate --start-phase=credhub
+</code></pre><p>Valid start phases are:</p>
 <ul>
-	
+<li><code>bosh</code>: start by modifying the manifests and performing a BOSH deployment</li>
+<li><code>credhub</code>: start by updating the original certs in Credhub with the newly generated ones</li>
+<li><code>apply</code>: start with the Operations Manager apply changes step</li>
+<li><code>cleanup</code>: simply remove the duplicate certificate reference from Credhub and exit</li>
 </ul>
+<p>Specifying anything other than one of these values is equivalent to passing
+<code>bosh</code>, which will start the process from the beginning. If you&rsquo;re unsure of
+which step to start at, it&rsquo;s always safe to start at the first step <code>bosh</code>.</p>
+
+<div class="notices note" ><p>Rerunning successful steps is safe. Skipping steps that have failed is <em>not</em> safe.</p>
+</div>
+
+<p>Any failure past the initial bosh deploy step should generally be started at the
+<code>credhub</code> step. You can tell if the bosh deploy step succeeded by looking for the
+log message &ldquo;Rotating identity certs in Credhub&rdquo;, if you see that you know you&rsquo;ve
+succesfully gotten past the bosh step.</p>
+<p>You may need to start at the cleanup step in cases where you&rsquo;ve decided to apply changes directly via Operations Manager.</p>
 
 
-<footer class=" footline" >
+<footer class="footline">
 	
 </footer>
 
@@ -349,8 +391,6 @@
             
                 
                     
-                        
-                        
                     
                 
                 
@@ -364,6 +404,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -397,6 +440,7 @@
             
                 
                     
+                    
                 
                 
 
@@ -412,6 +456,9 @@
             
             
                 
+                    
+                        
+                        
                     
                 
                 
@@ -452,8 +499,10 @@
 	 
 	 
 		
+			<a class="nav nav-prev" href="/rotate-instance-identity-certificates/docs/running/" title="Running the Tool"> <i class="fa fa-chevron-left"></i></a>
 		
-			<a class="nav nav-next" href="/rotate-instance-identity-certificates/docs/" title="Docs" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
+		
+			<a class="nav nav-next" href="/rotate-instance-identity-certificates/docs/faq/" title="Frequently Asked Questions" style="margin-right: 0px;"><i class="fa fa-chevron-right"></i></a>
 		
 	
     </div>
@@ -478,3 +527,4 @@
 
   </body>
 </html>
+

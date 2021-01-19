@@ -29,6 +29,16 @@ Note: we only support the full TAS deployment - small footprint runtime is not c
     </item>
     
     <item>
+      <title>Handling Failures</title>
+      <link>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/failure/</link>
+      <pubDate>Tue, 19 Jan 2021 10:06:00 -0700</pubDate>
+      
+      <guid>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/failure/</guid>
+      <description>In some cases deployments may fail, leaving the certificate rotation in a partially completed state. It&amp;rsquo;s safe to re-run riic from the beginning after you&amp;rsquo;ve addressed whatever failure may have occurred. In some situations you may not want to wait for all of the riic steps to re-run. In these scenarios, you can have it pick up at a specific step using a purposely hidden command-line flag.
+Starting at the wrong step can cause a broken deployment and downtime for applications.</description>
+    </item>
+    
+    <item>
       <title>Frequently Asked Questions</title>
       <link>https://vmware-tanzu.github.io/rotate-instance-identity-certificates/docs/faq/</link>
       <pubDate>Mon, 02 Nov 2020 13:42:03 -0700</pubDate>
