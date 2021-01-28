@@ -245,7 +245,7 @@ func errandConfigHandler(w http.ResponseWriter, r *http.Request) {
 	"errands": [
 	{
 		"name": "errand-1",
-		"post_deploy": false,
+		"post_deploy": "when-changed",
 		"label": "Errand 1 Label"
 	},
 	{

@@ -16,7 +16,7 @@ import (
 )
 
 type errandConfig struct {
-	RunPostDeploy map[string]bool `json:"run_post_deploy"`
+	RunPostDeploy map[string]interface{} `json:"run_post_deploy"`
 }
 
 type applyChangesRequest struct {
@@ -231,8 +231,8 @@ func (a *API) streamLog(output io.Writer) error {
 func (a *API) getErrandConfig(guid string) (errandConfig, error) {
 	errandBody := struct {
 		Errands []struct {
-			Name       string `json:"name"`
-			PostDeploy *bool  `json:"post_deploy,omitempty"`
+			Name       string      `json:"name"`
+			PostDeploy interface{} `json:"post_deploy,omitempty"`
 		} `json:"errands"`
 	}{}
 
@@ -262,7 +262,7 @@ func (a *API) getErrandConfig(guid string) (errandConfig, error) {
 		return errandConfig{}, err
 	}
 
-	errandMap := map[string]bool{}
+	errandMap := map[string]interface{}{}
 	for _, errand := range errandBody.Errands {
 		if errand.PostDeploy != nil {
 			errandMap[errand.Name] = false
