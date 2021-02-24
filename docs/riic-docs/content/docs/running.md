@@ -11,7 +11,7 @@ identity. This tool is not needed if you have already upgraded to Tanzu
 Application Service 2.7 or later, as that version automatically rotates those
 certs on upgrade.
 
-The tool operates on all BOSH deployments that have Diego cells, including TAS,
+Riic operates on all BOSH deployments that have Diego cells, including TAS,
 TASW, and Isolation Segments for TAS.
 
 {{% notice info %}}
@@ -34,25 +34,35 @@ each deployment and validate the certs match what is in Credhub.
 
 ## Prerequisites
 
-Download the latest binary from the [releases](https://github.com/vmware-tanzu/rotate-instance-identity-certificates/releases) page. This is a linux
-binary that will only run on the Operations Manager VM. Copy the binary to your
-Operations Manager VM:
+Download the latest binary from the
+[releases](https://github.com/vmware-tanzu/rotate-instance-identity-certificates/releases)
+page. This is a linux binary that will only run on the Operations Manager VM.
+If you can't directly download the file from Operations Manager, download the file to your
+workstation and then `scp` the binary to your Operations Manager VM:
 
 ```bash
 $ scp ~/Downloads/riic -i ops-manager-private-key.pem ubuntu@ops-manager-fqdn:~/riic
 ```
 
-We recommend running the tool using `nohup`. This is important because
+You will need to make the binary executable and move it into your PATH.
+```bash
+$ chmod +x riic
+$ sudo mv riic /usr/local/bin/riic
+```
+
+We recommend running the rotate command using `nohup`. This is important because
 if you run a rotate command directly from your SSH session and your connection
-terminates, so does the rotation process, potentially leaving your foundation in
+terminates, so does the rotation process potentially leaving your foundation in
 an indeterminite state. To start the tool in this way run the following:
 
 ```bash
-$ nohup riic <subcommand> &
+$ nohup riic <subcommand> <args> &
 ```
 
-This keeps the the command running even if your SSH session terminates. The
-standard error and standard out are viewable in the nohup.out log file:
+After running the command with nohup you must hit `Enter` a second time to drop
+you back the shell. The command will keep running even if your SSH session
+terminates. The standard error and standard out are viewable in the nohup.out
+log file:
 
 ```bash
 $ tail -f nohup.out
@@ -60,12 +70,14 @@ $ tail -f nohup.out
 
 ## Passing credentials
 
-There are no flags to pass in secret values so that they will not appear in your
-shell history. You will be prompted to enter the Operations Manager admin
-user's/client's password. If you prefer this to be non-interactive, set the
-`RIIC_PASSWORD` environment variable.
+There are no flags to pass in secret values. This is so that they will not
+appear in your shell history. You will be prompted to enter the Operations
+Manager admin user's/client's password and the Operations Manager decryption
+passphrase. If you prefer this to be non-interactive like when running with
+nohup, set the `RIIC_PASSWORD` and `RIIC_DECRYPTION_PASSPHRASE` environment
+variables.
 
-## SAML Auth
+### SAML Authentication
 
 If your Operations Manager does not use username/password authentication, simply
 set the `--use-client-secret` (`-c`) flag, and put your client ID in the
@@ -74,15 +86,16 @@ an explanation of password handling).
 
 ## Diego Identity Cert Expiration Check
 
-Before attempting to rotate your instance identity certificates, it's a good
+Before attempting to rotate your instance identity certificates it's a good
 idea to check their expiration dates. This can easily be done using the
 `riic check-expiry` command.
 
 From your Operations Manager VM, run the following command, passing in your
-Operations Manager credentials.
+Operations Manager username/clientid and then enter the password/secret when
+prompted.
 
 ```bash
-$ ./riic --username admin check-expiry
+$ riic check-expiry --username admin 
 ```
 
 This will display the Diego CA and Intermediate Identity Cert expiration dates
@@ -100,10 +113,8 @@ $ bosh -d DEPLOYMENT_NAME vms
 ```
 
 If there are VMs that are unhealthy, resolve those issues _before_ proceeding with
-the rotation. This may require you to recreate failing VMs.
-
-When you've confirmed that the deployment is healthy, proceed to rotate the
-certificates.
+the rotation. This may require you to recreate failing VMs. When you've confirmed
+that the deployment is healthy, proceed to rotate the certificates.
 
 _NOTE_ - When rotating certificates, the tool must run as the `tempest-web` user
 to ensure there are no permission errors during the deployment. Make sure to
@@ -114,17 +125,17 @@ $ sudo su - tempest-web
 ```
 
 If you forget this step, the operation will fail and ask you to switch users
-before trying again.
-
-Once you're running as `tempest-web`, run the following command to begin the
-rotation:
+before trying again. Once you're running as `tempest-web`, run the following
+command to begin the rotation:
 
 {{% notice tip %}}
-The following examples run the rotate command using `nohup` as noted above.
+The following examples run the rotate command using `nohup` as noted above
+and assume we've previously set the `RIIC_PASSWORD` and
+`RIIC_DECRYPTION_PASSPHRASE` environment variables.
 {{% /notice %}}
 
 ```bash
-$ nohup ./riic --username admin rotate &
+$ nohup riic rotate --username admin &
 $ tail -f nohup.out
 ```
 
@@ -140,5 +151,5 @@ VM, not just the first. We don't recommend running this on very large
 deployments.
 
 ```bash
-$ ./riic --username admin validate
+$ riic validate --username admin
 ```
