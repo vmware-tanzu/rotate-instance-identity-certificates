@@ -207,7 +207,11 @@ func ValidateVersion(om *om.API) error {
 func buildContext() (*kong.Context, error) {
 	ctx := kong.Parse(&cli,
 		kong.Name("riic"),
-		kong.Description("riic rotates the Diego instance-identity certificate"),
+		kong.Description(`
+riic rotates Diego instance-identity certificates
+
+To run non-interactively set the $RIIC_PASSWORD and $RIIC_DECRYPTION_PASSPHRASE environment variables
+`),
 		kong.Vars{
 			"version": Version,
 		},
