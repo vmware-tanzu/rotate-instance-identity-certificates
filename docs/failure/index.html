@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="generator" content="Hugo 0.80.0" />
+    <meta name="generator" content="Hugo 0.81.0" />
     <meta name="description" content="">
 <meta name="author" content="VMware Tanzu">
 
@@ -12,21 +12,21 @@
     <title>Handling Failures :: Rotate Instance Identity Certificates Docs</title>
 
     
-    <link href="/rotate-instance-identity-certificates/css/nucleus.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/fontawesome-all.min.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/hybrid.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/featherlight.min.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/perfect-scrollbar.min.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/auto-complete.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/atom-one-dark-reasonable.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/theme.css?1611081111" rel="stylesheet">
-    <link href="/rotate-instance-identity-certificates/css/hugo-theme.css?1611081111" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/nucleus.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/fontawesome-all.min.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/hybrid.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/featherlight.min.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/perfect-scrollbar.min.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/auto-complete.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/atom-one-dark-reasonable.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/theme.css?1614209294" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/hugo-theme.css?1614209294" rel="stylesheet">
     
-    <link href="/rotate-instance-identity-certificates/css/theme-blue.css?1611081111" rel="stylesheet">
+    <link href="/rotate-instance-identity-certificates/css/theme-blue.css?1614209294" rel="stylesheet">
     
     
 
-    <script src="/rotate-instance-identity-certificates/js/jquery-3.3.1.min.js?1611081111"></script>
+    <script src="/rotate-instance-identity-certificates/js/jquery-3.3.1.min.js?1614209294"></script>
 
     <style>
       :root #header + #content > #left > #rlblock_left{
@@ -298,7 +298,12 @@
                 
                     <div class="progress">
     <div class="wrapper">
-<nav id="TableOfContents"></nav>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#restarting-riic">Restarting RIIC</a></li>
+    <li><a href="#unable-to-render-jobs-for-instance-groups">Unable to render jobs for instance groups</a></li>
+  </ul>
+</nav>
     </div>
 </div>
 
@@ -321,6 +326,7 @@
         
 
 
+<h2 id="restarting-riic">Restarting RIIC</h2>
 <p>In some cases deployments may fail, leaving the certificate rotation in a partially
 completed state. It&rsquo;s safe to re-run riic from the beginning after you&rsquo;ve addressed
 whatever failure may have occurred. In some situations you may not want to wait for
@@ -354,6 +360,14 @@ which step to start at, it&rsquo;s always safe to start at the first step <code>
 log message &ldquo;Rotating identity certs in Credhub&rdquo;, if you see that you know you&rsquo;ve
 succesfully gotten past the bosh step.</p>
 <p>You may need to start at the cleanup step in cases where you&rsquo;ve decided to apply changes directly via Operations Manager.</p>
+<h2 id="unable-to-render-jobs-for-instance-groups">Unable to render jobs for instance groups</h2>
+<p>If <code>riic</code> fails part way through the deployment process for some reason that leaves
+one or more bosh agents in an unresponsive state you may be tempted to run <code>bosh cck</code>
+or <code>bosh recreate</code> on those VMs. Doing this may result in a bosh error similar to:
+<code>Expected variable '/cf/diego-instance-identity-root-ca-riic-regen' to be already versioned in deployment</code>.
+In these cases you should skip trying to repair the failed VMs and just re-run riic
+rotate from the beginning. This will force bosh to replace those VMs using the new
+bosh manifest thus avoiding the error.</p>
 
 
 <footer class="footline">
@@ -512,16 +526,16 @@ succesfully gotten past the bosh step.</p>
     <div style="left: -1000px; overflow: scroll; position: absolute; top: -1000px; border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;">
       <div style="border: none; box-sizing: content-box; height: 200px; margin: 0px; padding: 0px; width: 200px;"></div>
     </div>
-    <script src="/rotate-instance-identity-certificates/js/clipboard.min.js?1611081111"></script>
-    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.min.js?1611081111"></script>
-    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.jquery.min.js?1611081111"></script>
-    <script src="/rotate-instance-identity-certificates/js/jquery.sticky.js?1611081111"></script>
-    <script src="/rotate-instance-identity-certificates/js/featherlight.min.js?1611081111"></script>
-    <script src="/rotate-instance-identity-certificates/js/highlight.pack.js?1611081111"></script>
+    <script src="/rotate-instance-identity-certificates/js/clipboard.min.js?1614209294"></script>
+    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.min.js?1614209294"></script>
+    <script src="/rotate-instance-identity-certificates/js/perfect-scrollbar.jquery.min.js?1614209294"></script>
+    <script src="/rotate-instance-identity-certificates/js/jquery.sticky.js?1614209294"></script>
+    <script src="/rotate-instance-identity-certificates/js/featherlight.min.js?1614209294"></script>
+    <script src="/rotate-instance-identity-certificates/js/highlight.pack.js?1614209294"></script>
     <script>hljs.initHighlightingOnLoad();</script>
-    <script src="/rotate-instance-identity-certificates/js/modernizr.custom-3.6.0.js?1611081111"></script>
-    <script src="/rotate-instance-identity-certificates/js/learn.js?1611081111"></script>
-    <script src="/rotate-instance-identity-certificates/js/hugo-learn.js?1611081111"></script>
+    <script src="/rotate-instance-identity-certificates/js/modernizr.custom-3.6.0.js?1614209294"></script>
+    <script src="/rotate-instance-identity-certificates/js/learn.js?1614209294"></script>
+    <script src="/rotate-instance-identity-certificates/js/hugo-learn.js?1614209294"></script>
     
     
 
