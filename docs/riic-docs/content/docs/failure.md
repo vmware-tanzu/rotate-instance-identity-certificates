@@ -5,6 +5,8 @@ draft: false
 weight: 300
 ---
 
+## Restarting RIIC
+
 In some cases deployments may fail, leaving the certificate rotation in a partially
 completed state. It's safe to re-run riic from the beginning after you've addressed
 whatever failure may have occurred. In some situations you may not want to wait for
@@ -46,3 +48,13 @@ log message "Rotating identity certs in Credhub", if you see that you know you'v
 succesfully gotten past the bosh step.
 
 You may need to start at the cleanup step in cases where you've decided to apply changes directly via Operations Manager.
+
+## Unable to render jobs for instance groups
+
+If `riic` fails part way through the deployment process for some reason that leaves
+one or more bosh agents in an unresponsive state you may be tempted to run `bosh cck`
+or `bosh recreate` on those VMs. Doing this may result in a bosh error similar to:
+`Expected variable '/cf/diego-instance-identity-root-ca-riic-regen' to be already versioned in deployment`.
+In these cases you should skip trying to repair the failed VMs and just re-run riic
+rotate from the beginning. This will force bosh to replace those VMs using the new
+bosh manifest thus avoiding the error.
